@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotional Language Persuasion Activity</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+      line-height: 1.5;
+    }
+    header {
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      color: white;
+      padding: 34px 18px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+    header p { margin: 0; font-size: 1.05rem; }
+    main {
+      width: min(1100px, calc(100% - 24px));
+      margin: 24px auto 50px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #dbe3ef;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+    }
+    h2 { margin: 0 0 10px; color: #111827; }
+    h3 { margin: 0 0 8px; color: #1d4ed8; }
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    input, textarea {
+      width: 100%;
+      border: 1px solid #dbe3ef;
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 1rem;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fbfdff;
+    }
+    textarea {
+      min-height: 155px;
+      resize: vertical;
+    }
+    input:focus, textarea:focus {
+      outline: 3px solid #e0ecff;
+      border-color: #2563eb;
+    }
+    .student-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .instructions {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+    .text-box {
+      background: #f8fafc;
+      border: 1px solid #dbe3ef;
+      border-radius: 16px;
+      padding: 16px;
+      margin: 12px 0;
+      color: #374151;
+    }
+    .tips {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .tip {
+      background: #f1f5f9;
+      border-radius: 14px;
+      padding: 12px;
+      border: 1px solid #dbe3ef;
+    }
+    .tip strong { color: #1d4ed8; }
+
+    .counter {
+      margin-top: 7px;
+      font-size: 0.95rem;
+      color: #b45309;
+      font-weight: 700;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 8px 10px;
+      display: inline-block;
+    }
+    .counter.complete {
+      color: #166534;
+      background: #dcfce7;
+      border-color: #86efac;
+    }
+    .counter.incomplete {
+      color: #b45309;
+      background: #fff7ed;
+      border-color: #fed7aa;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .primary { background: #2563eb; color: white; }
+    .primary:hover { background: #1d4ed8; }
+    .secondary { background: #e5e7eb; color: #111827; }
+    .success-message {
+      display: none;
+      margin-top: 12px;
+      color: #15803d;
+      font-weight: 700;
+    }
+    footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.9rem;
+      padding: 20px;
+    }
+    @media print {
+      button, .buttons, .success-message { display: none; }
+      body { background: white; }
+      .card { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Using Emotional Language to Persuade</h1>
+    <p>Rewrite plain texts so they become more convincing, powerful, and emotional.</p>
+  </header>
+
+  <main>
+    <section class="card instructions">
+      <h2>Instructions</h2>
+      <ol>
+        <li>Read each plain text carefully.</li>
+        <li>Rewrite it using emotional language to make it more persuasive.</li>
+        <li>Each rewritten text must be at least 45 words.</li>
+        <li>Each reflection answer must be at least 20 words.</li>
+        <li>The counter turns green when you reach the minimum.</li>
+        <li>Copying and pasting into the answer boxes is blocked. Write your own work.</li>
+        <li>When you finish, click submit to download your answers.</li>
+      </ol>
+
+      <div class="tips">
+        <div class="tip"><strong>Adjectives:</strong> amazing, heartbreaking, powerful, unforgettable</div>
+        <div class="tip"><strong>Verbs:</strong> protect, rescue, transform, inspire, save</div>
+        <div class="tip"><strong>Urgency:</strong> act now, do not wait, before it is too late</div>
+        <div class="tip"><strong>Emotion:</strong> imagine, deserve, suffer, celebrate, hope</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Student Information</h2>
+      <div class="student-grid">
+        <div>
+          <label for="studentName">Name</label>
+          <input id="studentName" placeholder="Write your full name">
+        </div>
+        <div>
+          <label for="studentClass">Class</label>
+          <input id="studentClass" placeholder="Example: Year 8A">
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Text 1: Sports Drink Advertisement</h3>
+      <div class="text-box">
+        Our sports drink helps people stay hydrated during exercise. It comes in different flavours and can be purchased at most supermarkets. Many athletes drink it during training sessions.
+      </div>
+      <label for="answer1">Rewrite Text 1 using emotional language</label>
+      <textarea id="answer1" data-minwords="45" class="no-paste" placeholder="Write your persuasive version here..."></textarea>
+      <div class="counter incomplete" id="counter-answer1">0 / 45 words</div>
+    </section>
+
+    <section class="card">
+      <h3>Text 2: Animal Shelter Campaign</h3>
+      <div class="text-box">
+        The animal shelter takes care of homeless dogs and cats. The shelter needs more support from the community. People can donate money or volunteer their time to help the animals.
+      </div>
+      <label for="answer2">Rewrite Text 2 using emotional language</label>
+      <textarea id="answer2" data-minwords="45" class="no-paste" placeholder="Write your persuasive version here..."></textarea>
+      <div class="counter incomplete" id="counter-answer2">0 / 45 words</div>
+    </section>
+
+    <section class="card">
+      <h3>Text 3: School Event Advertisement</h3>
+      <div class="text-box">
+        The school talent show will take place on Friday evening in the school hall. Students will sing, dance, and perform for the audience. Tickets are available from the school office.
+      </div>
+      <label for="answer3">Rewrite Text 3 using emotional language</label>
+      <textarea id="answer3" data-minwords="45" class="no-paste" placeholder="Write your persuasive version here..."></textarea>
+      <div class="counter incomplete" id="counter-answer3">0 / 45 words</div>
+    </section>
+
+    <section class="card">
+      <h3>Text 4: Video Game Advertisement</h3>
+      <div class="text-box">
+        This video game includes different levels and multiplayer features. Players can complete missions and unlock rewards throughout the game.
+      </div>
+      <label for="answer4">Rewrite Text 4 using emotional language</label>
+      <textarea id="answer4" data-minwords="45" class="no-paste" placeholder="Write your persuasive version here..."></textarea>
+      <div class="counter incomplete" id="counter-answer4">0 / 45 words</div>
+    </section>
+
+    <section class="card">
+      <h3>Text 5: Environmental Campaign</h3>
+      <div class="text-box">
+        Many parks and beaches contain litter. Volunteers sometimes organise clean-up events to remove rubbish from these places. People are encouraged to recycle more often.
+      </div>
+      <label for="answer5">Rewrite Text 5 using emotional language</label>
+      <textarea id="answer5" data-minwords="45" class="no-paste" placeholder="Write your persuasive version here..."></textarea>
+      <div class="counter incomplete" id="counter-answer5">0 / 45 words</div>
+    </section>
+
+    <section class="card">
+      <h2>Reflection</h2>
+      <label for="reflection1">Which emotional words or phrases did you use the most?</label>
+      <textarea id="reflection1" data-minwords="20" class="no-paste" placeholder="Write your answer here..."></textarea>
+      <div class="counter incomplete" id="counter-reflection1">0 / 20 words</div>
+
+      <br><br>
+
+      <label for="reflection2">Why can emotional language make writing more persuasive?</label>
+      <textarea id="reflection2" data-minwords="20" class="no-paste" placeholder="Write your answer here..."></textarea>
+      <div class="counter incomplete" id="counter-reflection2">0 / 20 words</div>
+
+      <div class="buttons">
+        <button class="primary" onclick="submitWork()">Submit and Download Answers</button>
+        <button class="secondary" onclick="window.print()">Print</button>
+        <button class="secondary" onclick="clearWork()">Clear All</button>
+      </div>
+
+      <div id="successMessage" class="success-message">
+        Your answers have been downloaded. Upload the CSV file to Google Classroom if your teacher asks for it.
+      </div>
+    </section>
+  </main>
+
+  <footer>Emotional Language Persuasion Activity</footer>
+
+  <script>
+    const fields = ["studentName", "studentClass", "answer1", "answer2", "answer3", "answer4", "answer5", "reflection1", "reflection2"];
+    const requiredTextareas = ["answer1", "answer2", "answer3", "answer4", "answer5", "reflection1", "reflection2"];
+
+    function getValue(id) {
+      return document.getElementById(id).value.trim();
+    }
+
+    function countWords(text) {
+      const words = text.trim().match(/\b[\w'-]+\b/g);
+      return words ? words.length : 0;
+    }
+
+    function updateCounter(textarea) {
+      const minWords = Number(textarea.dataset.minwords || 0);
+      const count = countWords(textarea.value);
+      const counter = document.getElementById("counter-" + textarea.id);
+
+      counter.textContent = count + " / " + minWords + " words";
+
+      if (count >= minWords) {
+        counter.classList.remove("incomplete");
+        counter.classList.add("complete");
+        counter.textContent += " complete";
+      } else {
+        counter.classList.remove("complete");
+        counter.classList.add("incomplete");
+      }
+    }
+
+    function setupCountersAndPasteBlock() {
+      document.querySelectorAll("textarea[data-minwords]").forEach(textarea => {
+        updateCounter(textarea);
+        textarea.addEventListener("input", () => updateCounter(textarea));
+
+        textarea.addEventListener("paste", event => {
+          event.preventDefault();
+          alert("Pasting is not allowed. Please write your own answer.");
+        });
+
+        textarea.addEventListener("drop", event => {
+          event.preventDefault();
+          alert("Dropping copied text is not allowed. Please write your own answer.");
+        });
+      });
+    }
+
+    function escapeCSV(value) {
+      return '"' + String(value).replaceAll('"', '""') + '"';
+    }
+
+    function checkMinimumWords() {
+      for (const id of requiredTextareas) {
+        const field = document.getElementById(id);
+        const minWords = Number(field.dataset.minwords || 0);
+        const count = countWords(field.value);
+
+        if (count < minWords) {
+          field.focus();
+          alert("Please complete all answers. This field has " + count + " words and needs at least " + minWords + " words.");
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function submitWork() {
+      const name = getValue("studentName");
+      const studentClass = getValue("studentClass");
+
+      if (!name || !studentClass) {
+        alert("Please write your name and class before submitting.");
+        return;
+      }
+
+      if (!checkMinimumWords()) return;
+
+      const headers = [
+        "Name",
+        "Class",
+        "Text 1 Sports Drink",
+        "Text 1 Word Count",
+        "Text 2 Animal Shelter",
+        "Text 2 Word Count",
+        "Text 3 School Event",
+        "Text 3 Word Count",
+        "Text 4 Video Game",
+        "Text 4 Word Count",
+        "Text 5 Environmental Campaign",
+        "Text 5 Word Count",
+        "Reflection 1",
+        "Reflection 1 Word Count",
+        "Reflection 2",
+        "Reflection 2 Word Count",
+        "Submitted At"
+      ];
+
+      const row = [
+        name,
+        studentClass,
+        getValue("answer1"),
+        countWords(getValue("answer1")),
+        getValue("answer2"),
+        countWords(getValue("answer2")),
+        getValue("answer3"),
+        countWords(getValue("answer3")),
+        getValue("answer4"),
+        countWords(getValue("answer4")),
+        getValue("answer5"),
+        countWords(getValue("answer5")),
+        getValue("reflection1"),
+        countWords(getValue("reflection1")),
+        getValue("reflection2"),
+        countWords(getValue("reflection2")),
+        new Date().toLocaleString()
+      ];
+
+      const csv = headers.map(escapeCSV).join(",") + "\n" + row.map(escapeCSV).join(",");
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+
+      const safeName = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      const filename = (safeName || "student") + "-emotional-language-answers.csv";
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      document.getElementById("successMessage").style.display = "block";
+    }
+
+    function clearWork() {
+      if (!confirm("Clear all answers?")) return;
+      fields.forEach(id => document.getElementById(id).value = "");
+      document.getElementById("successMessage").style.display = "none";
+      document.querySelectorAll("textarea[data-minwords]").forEach(updateCounter);
+    }
+
+    setupCountersAndPasteBlock();
+  </script>
+</body>
+</html>
